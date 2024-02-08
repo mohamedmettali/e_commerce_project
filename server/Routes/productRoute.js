@@ -1,43 +1,78 @@
 const express = require("express");
 const router = express.Router();
-const Product = require("../Models/products");
+const product = require("../Models/products");
 
-// Route: GET /products
-// Description: Get all products
-// Public access
-router.get("/", async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.json(products);
-  } catch (error) {
-    console.error("Error getting products:", error.message);
-    res.status(500).json({ message: "Internal Server Error" });
+router.post("/addProduct", async (req,res)=>{
+  try{
+      const newProduct = {
+        imageURL: req.body.imageURL,  
+        name: req.body.name,
+        description: req.body.description,
+           price: req.body.price,
+           stockQuantity: req.body.birthdate
+      }
+      const result = await product.create(newProduct)
+      res.send({msg: "product added !", result})
+      } catch (error){
+          console.log(error);
+          res.status(500).json("Internal server error", error)
+      } 
+  })
+  
+  router.get("/getProducts", async (req, res) =>{
+  try{
+      const result = await product.find()
+      res.send(result)
+  
   }
-});
-
-// Route: POST /products
-// Description: Create a new product
-// Private access (requires authentication)
-router.post("/addproduct", async (req, res) => {
-  try {
-    const { name, description, price, stockQuantity } = req.body;
-
-    // Create a new product
-    const newProduct = new Product({
-      name,
-      description,
-      price,
-      stockQuantity,
-    });
-
-    // Save the product to the database
-    await newProduct.save();
-
-    res.status(201).json({ message: "Product created successfully" });
-  } catch (error) {
-    console.error("Error creating product:", error.message);
-    res.status(500).json({ message: "Internal Server Error" });
+   catch (error){
+      console.log(error);
+      res.status(500).json("Internal server error", error)
+  
   }
-});
+  })
+  
+  router.get("/getProduct/:id", async (req, res) =>{
+      try{
+          const id = req.params.id;
+          const result = await product.findById({_id:id})
+          res.send({msg: "Product loaded !", result})
+      
+      }
+       catch (error){
+          console.log(error);
+          res.status(500).json("Internal server error", error)
+      
+      }
+      })
+  
+      router.delete("/deleteProduct/:id", async (req, res) =>{
+          try{
+              const id = req.params.id;
+              const result = await product.findByIdAndDelete({_id:id})
+              res.send({msg: "Product deleted !", result})
+          
+          }
+           catch (error){
+              console.error(error);
+              res.status(500).json("Internal server error", error)
+          
+          }
+          })
+  
+          router.put("/updateProduct/:id", async (req, res) =>{
+              try{
+                  const id = req.params.id;
+                  const result = await contact.findOneAndUpdate({_id:id}, {$set: req.body})
+                  res.send({msg: "Product updated !", result})
+              
+              }
+               catch (error){
+                  console.error(error);
+                  res.status(500).json("Internal server error", error)
+              
+              }
+              })  
+  
 
 module.exports = router;

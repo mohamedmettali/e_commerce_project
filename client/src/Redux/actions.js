@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, REGISTER, GET_AUTH_USER } from "./actionTypes";
+import { LOGIN, LOGOUT, REGISTER, GET_AUTH_USER, GET_PRODUCTS } from "./actionTypes";
 import axios from "axios"
 
 export const register = (newUser) => async (dispatch) => {
@@ -36,3 +36,31 @@ export const get_auth_user = () => async (dispatch) => {
 export const logout = () => (dispatch) => {
     dispatch({type: LOGOUT})
 }
+
+export const getProducts = () =>  (dispatch) => {
+    axios.get("/products/getProducts")
+    .then((res) => dispatch({type: GET_PRODUCTS, payload: res}))
+    .catch((err)=> console.error(err))
+    
+     };
+ 
+ export const addProduct = (newProduct) =>  (dispatch) => {
+       axios.post("/products/addProduct", newProduct)
+       .then((res) => dispatch(getProducts()))
+       .catch((err)=> console.error(err))
+       
+        };
+ 
+ export const deleteProduct = (idProduct) =>  (dispatch) => {
+         axios.delete(`/products/deleteProduct/${idProduct}`)
+         .then((res) => dispatch(getProducts()))
+         .catch((err)=> console.error(err))
+         
+      };
+ 
+ export const updateProduct = (idProduct, updatedProduct) =>  (dispatch) => {
+       axios.put(`/productss/updateProduct/${idProduct}`, updatedProduct)
+       .then((res) => dispatch(getProducts()))
+       .catch((err)=> console.error(err))
+       
+    };     
