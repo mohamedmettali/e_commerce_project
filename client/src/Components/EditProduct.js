@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
 import { useState } from "react"
-import { updateContact } from '../Redux/actions';
+import { updateProduct } from '../Redux/actions';
 import { useDispatch } from "react-redux";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -54,22 +54,22 @@ return(
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label> Name</Form.Label>
         <Form.Control type="text" placeholder="full name" onChange={(e)=> {setName(e.target.value)}}
-        value={fullName} />
+        value={name} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>description</Form.Label>
         <Form.Control type="description" placeholder="description" onChange={(e)=> {setDescription(e.target.value)}} 
-          value={email}/>
+          value={description}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Price</Form.Label>
         <Form.Control type="number" placeholder="phone number" onChange={(e)=> {setPrice(e.target.value)}}
-          value={phoneNumber} />
+          value={price} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Stock Quantity</Form.Label>
         <Form.Control type="number" placeholder="stockQuantity" onChange={(e)=> {setStockQuantity(e.target.value)}}
-          value={birthdate} />
+          value={stockQuantity} />
       </Form.Group>
 
       <Button variant="success" onClick={updateC} >Update Product</Button>

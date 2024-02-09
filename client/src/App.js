@@ -5,6 +5,7 @@ import Dashboard from './Components/Dashboard';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 import AddProduct from './Components/AddProduct';
+import ListProduct from './Components/ListProduct';
 
 function App() {
   
@@ -16,6 +17,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/dashboard' element={<Dashboard/>} />
+        <Route path='/' element={<ListProduct />} />
+      <Route path='/add' element={<AddProduct />} />
       </Routes>
 
       <Footer />

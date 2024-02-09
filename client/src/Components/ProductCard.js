@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useDispatch } from "react-redux";
 import { deleteProduct } from '../Redux/actions';
-import EditContact from './EditContact';
+import EditProduct from './EditProduct';
  
 
 const ProductCard = ({ el }) => {
@@ -19,14 +19,14 @@ if (confirmDelete){
         
       
       <Card.Body>
-        <Card.Title>{el.Name}</Card.Title>
+        <Card.Title>{el.name}</Card.Title>
         <Card.Text>
         {el.description}
         {el.price}
         {el.stockQuantity}
         </Card.Text>
-        <EditContact el={el}/>
-        <Button variant="danger" onClick={deleteC}>Delete contact</Button>
+        <EditProduct el={el}/>
+        <Button variant="danger" onClick={deleteC}>Delete product</Button>
       </Card.Body>
   
       
