@@ -42,15 +42,15 @@ return (
         <Form.Control type="text" placeholder=" name" onChange={(e)=> {setName(e.target.value)}} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="name@example.com" onChange={(e)=> {setDescription(e.target.value)}} />
+        <Form.Label>Description</Form.Label>
+        <Form.Control type="text" placeholder="Description" onChange={(e)=> {setDescription(e.target.value)}} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Phone number</Form.Label>
-        <Form.Control type="number" placeholder="phone number" onChange={(e)=> {setPrice(e.target.value)}} />
+        <Form.Label>Price</Form.Label>
+        <Form.Control type="number" placeholder="Price" onChange={(e)=> {setPrice(e.target.value)}} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>birthdate</Form.Label>
+        <Form.Label>stockQuantity</Form.Label>
         <Form.Control type="number" placeholder="birthdate" onChange={(e)=> {setstockQuantity(e.target.value)}} />
       </Form.Group>
 
