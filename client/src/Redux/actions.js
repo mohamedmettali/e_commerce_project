@@ -59,7 +59,7 @@ export const getProducts = () =>  (dispatch) => {
       };
  
  export const updateProduct = (idProduct, updatedProduct) =>  (dispatch) => {
-       axios.put(`/productss/updateProduct/${idProduct}`, updatedProduct)
+       axios.put(`/products/updateProduct/${idProduct}`, updatedProduct)
        .then((res) => dispatch(getProducts()))
        .catch((err)=> console.error(err))
        

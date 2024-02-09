@@ -63,7 +63,7 @@ router.post("/addProduct", async (req,res)=>{
           router.put("/updateProduct/:id", async (req, res) =>{
               try{
                   const id = req.params.id;
-                  const result = await contact.findOneAndUpdate({_id:id}, {$set: req.body})
+                  const result = await product.findOneAndUpdate({_id:id}, {$set: req.body})
                   res.send({msg: "Product updated !", result})
               
               }

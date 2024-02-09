@@ -53,7 +53,7 @@ return(
       <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label> Name</Form.Label>
-        <Form.Control type="text" placeholder="full name" onChange={(e)=> {setName(e.target.value)}}
+        <Form.Control type="text" placeholder="name" onChange={(e)=> {setName(e.target.value)}}
         value={name} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

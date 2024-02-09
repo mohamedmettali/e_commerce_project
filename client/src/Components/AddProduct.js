@@ -51,10 +51,10 @@ return (
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>stockQuantity</Form.Label>
-        <Form.Control type="number" placeholder="birthdate" onChange={(e)=> {setstockQuantity(e.target.value)}} />
+        <Form.Control type="number" placeholder="stockQuantity" onChange={(e)=> {setstockQuantity(e.target.value)}} />
       </Form.Group>
 
-      <Button variant="success" onClick={add}>Add Contact</Button>
+      <Button variant="success" onClick={add}>Add Product</Button>
 
      <Link to ={"/"}>
       <Button variant="danger">Cancel</Button>
