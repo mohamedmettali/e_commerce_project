@@ -1,11 +1,26 @@
 const express = require("express");
 const router = express.Router();
 const product = require("../Models/products");
+const fs = require("fs");
+const path = require("path");
+const multer = require("multer");
+
+
+const storage = multer.diskStorage({
+    destination(req, file, cb) {
+      cb(null, "./uploads/");
+    },
+    filename(req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname));
+    },
+  });
+  
+  const upload = multer({ storage });
 
 router.post("/addProduct", async (req,res)=>{
   try{
       const newProduct = {
-        imageURL: req.body.imageURL,  
+        image: req.body.image,  
         name: req.body.name,
         description: req.body.description,
            price: req.body.price,
@@ -73,6 +88,47 @@ router.post("/addProduct", async (req,res)=>{
               
               }
               })  
+
+              router.post("/", upload.single("image"), (req, res) => {
+                if (!req.file) {
+                  return res.status(400).send("No file uploaded.");
+                }
+                res.send(`/uploads/${req.file.filename}`);
+              });
+              
+              
+              router.get("/images/:productId", async (req, res) => {
+                const { productId } = req.params;
+              
+                try {
+                  const Product = await product.findById(userId);
+                  if (!Product) {
+                    return res.status(404).send("Product not found");
+                  }
+              
+                  if (!Product.image) {
+                    return res.status(404).send("Product does not have an image");
+                  }
+              
+                  const normalizedPath = path.normalize(Product.image);
+                  const filePath = path.join(__dirname, "..", normalizedPath);
+              
+                  console.log("User Image Path:", Product.image);
+                  console.log("Normalized Path:", normalizedPath);
+                  console.log("Full File Path:", filePath);
+              
+                  if (fs.existsSync(filePath)) {
+                    res.sendFile(filePath);
+                  } else {
+                    res.status(404).send("Image not found");
+                  }
+                } catch (err) {
+                  console.error(err);
+                  res.status(500).send("Internal server error");
+                }
+              });    
+
+              
   
 
 module.exports = router;

@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 const EditProduct = ({el}) => {
     const [modalIsOpen, setIsOpen] = useState(false);
 
+    const [image, setImage] = useState(el.image)
     const [name, setName] = useState(el.name)
     const [description, setDescription] = useState(el.description)
     const [price, setPrice] = useState(el.price)
@@ -28,6 +29,7 @@ const EditProduct = ({el}) => {
 const updateC = () => {
  
     const updatedProduct = {
+        image,
         name,
         description,
         price,
@@ -52,23 +54,29 @@ return(
       <div><h1>update Product</h1></div>
       <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Image</Form.Label>
+        <Form.Control type="image" placeholder="Image" onChange={(e)=> {setImage(e.target.value)}} 
+          value={image}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label> Name</Form.Label>
         <Form.Control type="text" placeholder="name" onChange={(e)=> {setName(e.target.value)}}
         value={name} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>description</Form.Label>
-        <Form.Control type="description" placeholder="description" onChange={(e)=> {setDescription(e.target.value)}} 
+        <Form.Control type="text" placeholder="description" onChange={(e)=> {setDescription(e.target.value)}} 
           value={description}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Price</Form.Label>
-        <Form.Control type="number" placeholder="phone number" onChange={(e)=> {setPrice(e.target.value)}}
+        <Form.Control type="text" placeholder="phone number" onChange={(e)=> {setPrice(e.target.value)}}
           value={price} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Stock Quantity</Form.Label>
-        <Form.Control type="number" placeholder="stockQuantity" onChange={(e)=> {setStockQuantity(e.target.value)}}
+        <Form.Control type="text" placeholder="stockQuantity" onChange={(e)=> {setStockQuantity(e.target.value)}}
           value={stockQuantity} />
       </Form.Group>
 

@@ -18,6 +18,9 @@ products &&
 products.map((el)=> <ProductCard el={el}/>)
 
 }
+
+
+
 </div>
 )
 }

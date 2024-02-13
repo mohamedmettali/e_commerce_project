@@ -2,9 +2,8 @@ const mongoose = require("mongoose")
 const schema = mongoose.Schema
 
 const productSchema = new schema({
-    ImgURL: {
+    image: {
         type: String,
-        
     },
     
     name: {
@@ -16,11 +15,11 @@ const productSchema = new schema({
         require: true
     },
     price: {
-        type:  Number,
+        type:  String,
         require: true
     },
     stockQuantity: {
-         type: Number, 
+         type: String, 
          require: true },
 })
 
