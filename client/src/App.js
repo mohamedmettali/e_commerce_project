@@ -4,11 +4,12 @@ import Dashboard from './Components/Dashboard';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 import AddProduct from './Components/AddProduct';
-import ListProduct from './Components/ListProduct';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Routes, Route, Link } from "react-router-dom";
+import Login from './Components/Login';
+import ProductDescription from './Components/ProductDescription';
 
 function App() {
   //test
@@ -34,8 +35,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/dashboard' element={<Dashboard/>} />
-        <Route path='/' element={<ListProduct />} />
       <Route path='/add' element={<AddProduct />} />
+      <Route path='/login' element={<Login />} />
+
+      <Route path="/product/:id" element={<ProductDescription />} />
+
       </Routes>
 
       <Footer />

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, REGISTER, GET_AUTH_USER, GET_PRODUCTS, SET_USER_IMAGE } from "./actionTypes";
+import { LOGIN, LOGOUT, REGISTER, GET_AUTH_USER, GET_PRODUCTS, SET_USER_IMAGE, GET_PRODUCTS_ByID } from "./actionTypes";
 import axios from "axios"
 
 export const register = (newUser) => async (dispatch) => {
@@ -75,3 +75,10 @@ export const getProducts = () =>  (dispatch) => {
           console.error('Error fetching user image:', error);
         }
       };
+
+      export const getProduct = (idProduct) =>  (dispatch) => {
+        axios.get(`/products/getProducts/${idProduct}`)
+        .then((res) => dispatch({type: GET_PRODUCTS_ByID, payload: res}))
+        .catch((err)=> console.error(err))
+        
+         };

@@ -1,9 +1,11 @@
 import Modal from 'react-modal';
 import { useState } from "react"
-import { updateProduct } from '../Redux/actions';
+import { get_auth_user, updateProduct } from '../Redux/actions';
 import { useDispatch } from "react-redux";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
+
 
 const EditProduct = ({el}) => {
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -15,7 +17,10 @@ const EditProduct = ({el}) => {
     const [stockQuantity, setStockQuantity] = useState(el.stockQuantity)
 
     const dispatch = useDispatch()
+    dispatch(get_auth_user())
   
+
+
 
     function openModal() {
       setIsOpen(true);
@@ -55,7 +60,7 @@ return(
       <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Image</Form.Label>
-        <Form.Control type="image" placeholder="Image" onChange={(e)=> {setImage(e.target.value)}} 
+        <Form.Control type="image"  onChange={(e)=> {setImage(e.target.value)}} 
           value={image}/>
       </Form.Group>
 
@@ -79,8 +84,10 @@ return(
         <Form.Control type="text" placeholder="stockQuantity" onChange={(e)=> {setStockQuantity(e.target.value)}}
           value={stockQuantity} />
       </Form.Group>
-
+      
+    
       <Button variant="success" onClick={updateC} >Update Product</Button>
+    
 
      
     </Form>

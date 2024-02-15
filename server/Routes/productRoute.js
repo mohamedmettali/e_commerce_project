@@ -6,6 +6,7 @@ const path = require("path");
 const multer = require("multer");
 
 
+
 const storage = multer.diskStorage({
     destination(req, file, cb) {
       cb(null, "./uploads/");
@@ -23,8 +24,8 @@ router.post("/addProduct", async (req,res)=>{
         image: req.body.image,  
         name: req.body.name,
         description: req.body.description,
-           price: req.body.price,
-           stockQuantity: req.body.birthdate
+        price: req.body.price,
+        stockQuantity: req.body.stockQuantity
       }
       const result = await product.create(newProduct)
       res.send({msg: "product added !", result})
@@ -47,19 +48,19 @@ router.post("/addProduct", async (req,res)=>{
   }
   })
   
-  router.get("/getProduct/:id", async (req, res) =>{
-      try{
-          const id = req.params.id;
-          const result = await product.findById({_id:id})
-          res.send({msg: "Product loaded !", result})
-      
-      }
-       catch (error){
-          console.log(error);
-          res.status(500).json("Internal server error", error)
-      
-      }
-      })
+  router.get("/getProducts/:id", async (req, res) =>{
+    try{
+      const id = req.params.id
+        const result = await product.findById({_id:id})
+        res.send(result)
+    
+    }
+     catch (error){
+        console.log(error);
+        res.status(500).json("Internal server error", error)
+    
+    }
+    })
   
       router.delete("/deleteProduct/:id", async (req, res) =>{
           try{
@@ -101,7 +102,7 @@ router.post("/addProduct", async (req,res)=>{
                 const { productId } = req.params;
               
                 try {
-                  const Product = await product.findById(userId);
+                  const Product = await product.findById(productId);
                   if (!Product) {
                     return res.status(404).send("Product not found");
                   }

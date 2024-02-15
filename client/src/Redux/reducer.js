@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, REGISTER, GET_AUTH_USER, GET_PRODUCTS, SET_USER_IMAGE } from "./actionTypes"
+import { LOGIN, LOGOUT, REGISTER, GET_AUTH_USER, GET_PRODUCTS, SET_USER_IMAGE, GET_PRODUCTS_ByID } from "./actionTypes"
 
 const initialState = {
     user: null,
@@ -6,6 +6,7 @@ const initialState = {
     token: localStorage.getItem("token"),
     products: [],
     image: null,
+    product: null
 }
 
 const reducer = (state= initialState, action) => {
@@ -23,6 +24,8 @@ const reducer = (state= initialState, action) => {
             return {...state, user: action.payload.user}
         case GET_PRODUCTS: 
             return {...state, products:action.payload}
+        case GET_PRODUCTS_ByID:
+            return {...state, product: action.payload.data}
 
         case SET_USER_IMAGE:
                 // Update the state with the received image URL
